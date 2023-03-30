@@ -4,6 +4,13 @@
 #include <limits.h>
 #include <unistd.h>
 
+int _putchar(char c);
+int _printf(const char *format, ...);
+void print_char(va_list arg);
+void print_string(va_list arg);
+void print_percent(va_list arg);
+void print_invalid(char c);
+
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to print
@@ -32,6 +39,10 @@ int _printf(const char *format, ...)
 	{
 		return (-1);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0ea88e7a562ac3bd8c03af484f841700a64f700
 	for (p = format; *p != '\0'; p++)
 	{
 		if (*p == '%')
@@ -42,12 +53,9 @@ int _printf(const char *format, ...)
 				return (-1);
 			}
 			else if (*p == 'c')
-			{
-				char c = va_arg(arg, int);
-				_putchar(c);
-				count++;
-			}
+				print_char(arg, &count);
 			else if (*p == 's')
+<<<<<<< HEAD
 			{
 				char *str = va_arg(arg, char*);
 				if (str == NULL)
@@ -83,17 +91,13 @@ int _printf(const char *format, ...)
 					div /= 10;
 				} while (div > 0);
 			}
+=======
+				print_string(arg, &count);
+>>>>>>> c0ea88e7a562ac3bd8c03af484f841700a64f700
 			else if (*p == '%')
-			{
-				_putchar('%');
-				count++;
-			}
+				print_percent(arg, &count);
 			else
-			{
-				_putchar('%');
-				_putchar(*p);
-				count += 2;
-			}
+				print_invalid(*p, &count);
 		}
 		else
 		{
@@ -101,7 +105,66 @@ int _printf(const char *format, ...)
 			count++;
 		}
 	}
+
 	va_end(arg);
 
 	return (count);
+<<<<<<< HEAD
+=======
+}
+
+/**
+ * print_char - prints a single character.
+ * @arg: list of arguments
+ * @count: pointer to the count of printed characters
+ */
+void print_char(va_list arg, int *count)
+{
+	char c = va_arg(arg, int);
+	_putchar(c);
+	(*count)++;
+}
+
+/**
+ * print_string - prints a string.
+ * @arg: list of arguments
+ * @count: pointer to the count of printed characters
+ */
+void print_string(va_list arg, int *count)
+{
+	char *str = va_arg(arg, char*);
+	if (str == NULL)
+	{
+		str = "(null)";
+	}
+	while (*str != '\0')
+	{
+		_putchar(*str);
+		str++;
+		(*count)++;
+	}
+}
+
+/**
+ * print_percent - prints a percent sign.
+ * @arg: list of arguments
+ * @count: pointer to the count of printed characters
+ */
+void print_percent(va_list arg, int *count)
+{
+	_putchar('%');
+	(*count)++;
+}
+
+/**
+ * print_invalid - prints an invalid format specifier.
+ * @c: invalid format specifier
+ * @count: pointer to the count of printed characters
+ */
+void print_invalid(char c, int *count)
+{
+	_putchar('%');
+	_putchar(c);
+	(*count) += 2;
+>>>>>>> c0ea88e7a562ac3bd8c03af484f841700a64f700
 }
