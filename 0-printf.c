@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <unistd.h>
-#include "main.h"
 
 /**
  * _putchar - writes the character c to stdout
@@ -29,13 +28,19 @@ int _printf(const char *format, ...)
 	va_list arg;
 
 	va_start(arg, format);
+	if (format == NULL)
+	{
+		return (-1);
+	}
 	for (p = format; *p != '\0'; p++)
 	{
 		if (*p == '%')
 		{
 			p++;
 			if (*p == '\0')
+			{
 				return (-1);
+			}
 			else if (*p == 'c')
 			{
 				char c = va_arg(arg, int);
@@ -55,6 +60,28 @@ int _printf(const char *format, ...)
 					str++;
 					count++;
 				}
+			}
+			else if (*p == 'd' || *p == 'i')
+			{
+				int num = va_arg(arg, int);
+				int div = 1;
+				if (num < 0)
+				{
+					_putchar('-');
+					count++;
+					num = -num;
+				}
+				while (num / div > 9)
+				{
+					div *= 10;
+				}
+				do
+				{
+					_putchar(num / div + '0');
+					count++;
+					num %= div;
+					div /= 10;
+				} while (div > 0);
 			}
 			else if (*p == '%')
 			{
@@ -77,5 +104,4 @@ int _printf(const char *format, ...)
 	va_end(arg);
 
 	return (count);
-
 }
