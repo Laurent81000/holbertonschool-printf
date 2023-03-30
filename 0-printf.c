@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 #include <limits.h>
 #include <unistd.h>
+#include "main.h"
 
 /**
  * _putchar - writes the character c to stdout
@@ -12,7 +14,7 @@
  */
 int _putchar(char c)
 {
-	return write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 /**
@@ -22,50 +24,58 @@ int _putchar(char c)
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
 	int count = 0;
+	const char *p;
+	va_list arg;
 
-	va_start(args, format);
-
-	while (*format)
+	va_start(arg, format);
+	for (p = format; *p != '\0'; p++)
 	{
-		if (*format == '%')
+		if (*p == '%')
 		{
-			format++;
-
-			/* Print a single character */
-			if (*format == 'c')
+			p++;
+			if (*p == '\0')
+				return (-1);
+			else if (*p == 'c')
 			{
-				char c = va_arg(args, int);
-				count += _putchar(c);
+				char c = va_arg(arg, int);
+				_putchar(c);
+				count++;
 			}
-			/* Print a string */
-			else if (*format == 's')
+			else if (*p == 's')
 			{
-				char *s = va_arg(args, char*);
-				while (*s)
+				char *str = va_arg(arg, char*);
+				if (str == NULL)
 				{
-					count += _putchar(*s);
-					s++;
+					str = "(null)";
+				}
+				while (*str != '\0')
+				{
+					_putchar(*str);
+					str++;
+					count++;
 				}
 			}
-			/* Print a percent sign */
-			else if (*format == '%')
+			else if (*p == '%')
 			{
-				count += _putchar('%');
+				_putchar('%');
+				count++;
+			}
+			else
+			{
+				_putchar('%');
+				_putchar(*p);
+				count += 2;
 			}
 		}
 		else
 		{
-			count += _putchar(*format);
+			_putchar(*p);
+			count++;
 		}
-
-		format++;
 	}
-
-	va_end(args);
+	va_end(arg);
 
 	return (count);
+
 }
-
-
