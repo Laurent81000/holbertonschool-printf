@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 #include <limits.h>
 #include <unistd.h>
-<<<<<<< HEAD
 #include "main.h"
-=======
->>>>>>> 70690b08afafa3efe7dbf9b288f229e8a9727144
 
 /**
  * _putchar - writes the character c to stdout
@@ -16,83 +14,65 @@
  */
 int _putchar(char c)
 {
-<<<<<<< HEAD
 	return (write(1, &c, 1));
-=======
-	return write(1, &c, 1);
->>>>>>> 70690b08afafa3efe7dbf9b288f229e8a9727144
 }
 
 /**
  * _printf - prints output according to a format.
  * @format: character string containing zero or more directives.
- * Return: the number of characters printed (excluding the null byte
+ * Return: the number of characters printed (excluding the null byte)
  */
 int _printf(const char *format, ...)
 {
-<<<<<<< HEAD
-=======
-	va_list args;
->>>>>>> 70690b08afafa3efe7dbf9b288f229e8a9727144
 	int count = 0;
+	const char *p;
+	va_list arg;
+	char *str;
 
-<<<<<<< HEAD
 	va_start(arg, format);
 	for (p = format; *p != '\0'; p++)
-=======
-	va_start(args, format);
-
-	while (*format)
->>>>>>> 70690b08afafa3efe7dbf9b288f229e8a9727144
 	{
-		if (*format == '%')
+		if (*p == '%')
 		{
-<<<<<<< HEAD
 			p++;
 			if (*p == '\0')
 				return (-1);
 			else if (*p == 'c')
-=======
-			format++;
-
-			/* Print a single character */
-			if (*format == 'c')
->>>>>>> 70690b08afafa3efe7dbf9b288f229e8a9727144
 			{
-				char c = va_arg(args, int);
-				count += _putchar(c);
+				char c = va_arg(arg, int);
+				_putchar(c);
+				count++;
 			}
-			/* Print a string */
-			else if (*format == 's')
+			else if (*p == 's')
 			{
-				char *s = va_arg(args, char*);
-				while (*s)
+				str = va_arg(arg, char*);
+				while (*str != '\0')
 				{
-					count += _putchar(*s);
-					s++;
+					_putchar(*str);
+					str++;
+					count++;
 				}
 			}
-			/* Print a percent sign */
-			else if (*format == '%')
+			else if (*p == '%')
 			{
-				count += _putchar('%');
+				_putchar('%');
+				count++;
+			}
+			else
+			{
+				_putchar('%');
+				_putchar(*p);
+				count += 2;
 			}
 		}
 		else
 		{
-			count += _putchar(*format);
+			_putchar(*p);
+			count++;
 		}
-
-		format++;
 	}
-<<<<<<< HEAD
+	free(str);
 	va_end(arg);
-=======
-
-	va_end(args);
->>>>>>> 70690b08afafa3efe7dbf9b288f229e8a9727144
 
 	return (count);
 }
-
-
