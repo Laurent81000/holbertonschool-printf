@@ -1,99 +1,73 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include <unistd.h>
 #include "main.h"
+#include "_putchar"
 
 /**
  * _printf - prints output according to a format.
  * @format: character string containing zero or more directives.
- * Return: the number of characters printed (excluding the null byte 
- * used to end output to strings)
+ * Return: the number of characters printed (excluding the null byte)
  */
+
 int _printf(const char *format, ...)
 {
-	int counter = 0;
-	int i = 0;
-	va_list args;
-	char c;
-	char *s;
-/** 
- * Second step: we create a loop to count
- * the number of characters in the format string 
- */
-	while ((c = format[i++]))
+	int count = 0;
+	const char *p;
+	va_list arg;
+
+	va_start(arg, format);
+
+	/**
+	 * the for loop goes through the string
+	 * it checks all the characters to see if they are equal to %.
+	 * if it is good it looks at the directive that follows c or s
+	 */
+	for (p = format; *p != '\0'; p++)
 	{
-/**
- * Third step: we search if the character is different from '%'.
- * If c != '%' we print the characters
- * if c = '%' we have to manage the printf format directive
- */
-		if (c != '%')
+		if (*p == '%')
 		{
-			_putchar(c);
-			counter++;
+			p++;
+			if (*p == '\0')
+				return (-1);
+
+
+			else if (*p == 'c')
+			{
+				char c = va_arg(arg, int);
+				_putchar(c);
+				count++;
+			}
+			else if (*p == 's')
+			{
+				char *str = va_arg(arg, char*);
+				while (*str != '\0')
+				{
+					_putchar(*str);
+					str++;
+					count++;
+				}
+			}
+			else if (*p == '%')
+			{
+				_putchar('%');
+				count++;
+			}
+			else
+			{
+				_putchar('%');
+				_putchar(*p);
+				count += 2;
+			}
 		}
 		else
 		{
-
-/**
- * Fourth step: A switch will be used to clarify the code
- * of our 3 cases: c, s and %.
- */
-			switch (format[i++])
-			{
-/**
- * Fifth step: Case for characters
- * Using va_arg to retrieve the sequence of arguments (...)
- * A single character displayed one by one, then counted
- */
-				case 'c':
-					c = va_arg(args, int);
-					_putchar(c);
-					counter++;
-					break;
-			}
-/**
- * Sixth step: Case for the string
- * va_arg + 
- * loop to display and count each character that makes up a string
- */
-			case 's':
-			s = va_arg(args, char*);
-			while (*s)
-			{
-				_putchar(*s++);
-				counter++;
-			}
-			break;
-/**
- * Seventh step: Case for the '%' formatting symbol
- * va_arg + 
- * display and count the '%'
- */ 
-			case '%':
-			_putchar('%');
-			counter++;
-			break;
-/* switch syntax */
-			default:
-/**
- * For "%c" and "%s" we add +2 to not display them
- * For '%' we remove -1 to +2 to not display it
- */ 
-			_putchar('%');
-			_putchar(format[i - 1]);
-			counter += 2;
-			break;
+			_putchar(*p);
+			count++;
 		}
 	}
+	va_end(arg);
+	/**
+	 *renvoie le nombres de caracteres afficher
+	 */
+	return (count);
 }
-va_end(args);
-/** 
- * First step: the prototype returns the number of printed 
- *characters
- * we do this with a counter 
- */
-return (counter);
-}
-
-
