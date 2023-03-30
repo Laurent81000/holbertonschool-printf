@@ -22,6 +22,7 @@ int _putchar(char c)
  * @format: character string containing zero or more directives.
  * Return: the number of characters printed (excluding the null byte)
  */
+
 int _printf(const char *format, ...)
 {
 	int count = 0;
@@ -29,6 +30,10 @@ int _printf(const char *format, ...)
 	va_list arg;
 
 	va_start(arg, format);
+	if (format == NULL)
+	{
+		return (-1);
+	}
 	for (p = format; *p != '\0'; p++)
 	{
 		if (*p == '%')
