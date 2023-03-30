@@ -45,6 +45,10 @@ int _printf(const char *format, ...)
 			else if (*p == 's')
 			{
 				char *str = va_arg(arg, char*);
+				if (str == NULL)
+				{
+					str = "(NULL)";
+				}
 				while (*str != '\0')
 				{
 					_putchar(*str);
@@ -73,4 +77,5 @@ int _printf(const char *format, ...)
 	va_end(arg);
 
 	return (count);
+
 }
