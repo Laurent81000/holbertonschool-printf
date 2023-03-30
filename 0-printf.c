@@ -13,63 +13,58 @@
  */
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	return write(1, &c, 1);
 }
 
 /**
  * _printf - prints output according to a format.
  * @format: character string containing zero or more directives.
- * Return: the number of characters printed (excluding the null byte used to end output to strings)
+ * Return: the number of characters printed (excluding the null byte)
  */
 int _printf(const char *format, ...)
 {
+	va_list args;
 	int count = 0;
-	const char *p;
-	va_list arg;
 
-	va_start(arg, format);
-	for (p = format; *p != '\0'; p++)
+	va_start(args, format);
+
+	while (*format)
 	{
-		if (*p == '%')
+		if (*format == '%')
 		{
-			p++;
-			if (*p == '\0')
-				return (-1);
-			else if (*p == 'c')
+			format++;
+
+			/* Print a single character */
+			if (*format == 'c')
 			{
-				char c = va_arg(arg, int);
-				_putchar(c);
-				count++;
+				char c = va_arg(args, int);
+				count += _putchar(c);
 			}
-			else if (*p == 's')
+			/* Print a string */
+			else if (*format == 's')
 			{
-				char *str = va_arg(arg, char*);
-				while (*str != '\0')
+				char *s = va_arg(args, char*);
+				while (*s)
 				{
-					_putchar(*str);
-					str++;
-					count++;
+					count += _putchar(*s);
+					s++;
 				}
 			}
-			else if (*p == '%')
+			/* Print a percent sign */
+			else if (*format == '%')
 			{
-				_putchar('%');
-				count++;
-			}
-			else
-			{
-				_putchar('%');
-				_putchar(*p);
-				count += 2;
+				count += _putchar('%');
 			}
 		}
 		else
 		{
-			_putchar(*p);
-			count++;
+			count += _putchar(*format);
 		}
+
+		format++;
 	}
-	va_end(arg);
+
+	va_end(args);
 
 	return (count);
 }
