@@ -1,30 +1,33 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <limits.h>
+#include <unistd.h>
 #include "main.h"
-#include "_putchar.h"
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
 
 /**
  * _printf - prints output according to a format.
  * @format: character string containing zero or more directives.
- * Return: the number of characters printed (excluding the null byte)
+ * Return: the number of characters printed (excluding the null byte
  */
-
 int _printf(const char *format, ...)
 {
-	if (format == NULL)
-        	return (-1);
-
 	int count = 0;
 	const char *p;
 	va_list arg;
 
 	va_start(arg, format);
-
-	/**
-	 * the for loop goes through the string
-	 * it checks all the characters to see if they are equal to %.
-	 * if it is good it looks at the directive that follows c or s
-	 */
 	for (p = format; *p != '\0'; p++)
 	{
 		if (*p == '%')
@@ -32,8 +35,6 @@ int _printf(const char *format, ...)
 			p++;
 			if (*p == '\0')
 				return (-1);
-
-
 			else if (*p == 'c')
 			{
 				char c = va_arg(arg, int);
@@ -69,8 +70,6 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(arg);
-	/**
-	 *renvoie le nombres de caracteres afficher
-	 */
+
 	return (count);
 }
