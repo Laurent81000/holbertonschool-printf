@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include "main.h"
-#include "_putchar"
+#include "_putchar.h"
 
 /**
  * _printf - prints output according to a format.
@@ -11,6 +11,9 @@
 
 int _printf(const char *format, ...)
 {
+	if (format == NULL)
+        	return (-1);
+
 	int count = 0;
 	const char *p;
 	va_list arg;
