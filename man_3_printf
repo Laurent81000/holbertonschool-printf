@@ -1,0 +1,53 @@
+MAN PAGE
+
+NAME
+_printf - formatted output conversion function
+
+SYNOPSIS
+#include "main.h"
+int _printf(const char *format, ...);
+
+DESCRIPTION
+The _printf function is a custom implementation of the printf function in C.
+It prints a formatted output to the standard output stream (stdout).
+The function takes a string argument 'format' which specifies the format of the output.
+The format string may contain conversion specifiers that begin with the '%' symbol, and end with a conversion specifier character that specifies the type of output to be printed.
+
+Conversion Specifiers:
+- %c - character
+- %s - string
+- %d or %i - decimal integer
+- %u - unsigned decimal integer
+- %o - octal
+- %x or %X - hexadecimal
+- %p - pointer address
+
+Flags:
+- 0 - left-pads the number with zeros instead of spaces
+- - (hyphen) - left-aligns the converted value
+- + - prints a plus sign for positive numbers
+- ' ' (space) - inserts a space before the value
+
+Field Width:
+- Specifies the minimum width of the output. 
+If the value is shorter than the specified width,
+   the remaining characters are padded with spaces or zeros (if '0' flag is set).
+
+   Precision:
+   - For integers - specifies the minimum number of digits to be printed
+   - For floats - specifies the number of digits after the decimal point to be printed
+
+   Length Modifier:
+   - h - short integer
+   - l - long integer
+
+   RETURN VALUE
+   The _printf function returns the number of characters printed (excluding the null byte used to end output
+		   to strings).
+
+   EXAMPLES
+   Example: Printing a string and an integer value.
+   _printf("Hello, %s. You have %d new messages.\n", "John", 5);
+
+   DATE
+   March 30, 2023
