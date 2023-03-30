@@ -27,7 +27,6 @@ int _printf(const char *format, ...)
 	int count = 0;
 	const char *p;
 	va_list arg;
-	char *str;
 
 	va_start(arg, format);
 	for (p = format; *p != '\0'; p++)
@@ -45,7 +44,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*p == 's')
 			{
-				str = va_arg(arg, char*);
+				char *str = va_arg(arg, char*);
 				while (*str != '\0')
 				{
 					_putchar(*str);
@@ -71,7 +70,6 @@ int _printf(const char *format, ...)
 			count++;
 		}
 	}
-	free(str);
 	va_end(arg);
 
 	return (count);
