@@ -2,7 +2,6 @@
 #include <stdarg.h>
 #include <limits.h>
 #include <unistd.h>
-#include "main.h"
 
 /**
  * _putchar - writes the character c to stdout
@@ -68,3 +67,5 @@ int _printf(const char *format, ...)
 
 	return (count);
 }
+
+
