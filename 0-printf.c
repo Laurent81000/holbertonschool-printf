@@ -63,6 +63,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*p == 'd' || *p == 'i')
 			{
+
 				int num = va_arg(arg, int);
 				int div = 1;
 				if (num < 0)
