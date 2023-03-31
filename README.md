@@ -19,7 +19,6 @@ This project is an implementation of the C standard library function printf. The
 
 To compile the project, use the following command:
 
-bash
 gcc -Wall -Werror -Wextra -pedantic *.c -o printf
 
 ## Requirements
@@ -52,14 +51,11 @@ Length: 28
 
 To access the manual page for this implementation of printf, run the following command:
 
-bash
 man ./man_3_printf
 
 ## Testing
 
 Testing was done using the CUnit unit testing framework. The test suite can be found in the tests directory, and can be compiled and run with the following commands:
-
-bash
 
 gcc -Wall -Werror -Wextra -pedantic -I../ -I./../tests -L../ -lcunit -o test_printf test_printf.c ../libprintf.a
 ./test_printf
