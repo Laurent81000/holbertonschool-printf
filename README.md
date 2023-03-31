@@ -1,7 +1,12 @@
-Project Title
+![Logo Holberton](https://github.com/Laurent81000/holbertonschool-printf/issues/1#issuecomment-1492079122)
+
+# C - printf
+
+## Project Title
 
 _printf function implementation
-Description
+
+## Description
 
 This project is an implementation of the C standard library function printf. The printf function allows printing formatted output to the console. This implementation includes the following format specifiers:
 
@@ -10,21 +15,20 @@ This project is an implementation of the C standard library function printf. The
     %d, %i: for printing signed integers
     %%: for printing the % symbol
 
-Compilation command
+## Compilation command
 
 To compile the project, use the following command:
 
 bash
-
 gcc -Wall -Werror -Wextra -pedantic *.c -o printf
 
-Requirements
+## Requirements
 
     Ubuntu 20.04 LTS
     GCC compiler
     git
 
-Examples
+## Examples
 
 c
 
@@ -40,22 +44,19 @@ int main(void)
         return (0);
 }
 
-Output:
-
-css
+## Output:
 
 Hello world, have a 10! day
 Length: 28
 
-Man page
+## Man page
 
 To access the manual page for this implementation of printf, run the following command:
 
 bash
-
 man ./man_3_printf
 
-Testing
+## Testing
 
 Testing was done using the CUnit unit testing framework. The test suite can be found in the tests directory, and can be compiled and run with the following commands:
 
@@ -64,10 +65,10 @@ bash
 gcc -Wall -Werror -Wextra -pedantic -I../ -I./../tests -L../ -lcunit -o test_printf test_printf.c ../libprintf.a
 ./test_printf
 
-Memory leaks were checked using the Valgrind tool:
+## Flowchart
 
-bash
+![Flowchart](https://github.com/Laurent81000/holbertonschool-printf/issues/2#issue-1649556418)
 
-valgrind --leak-check=full ./test_printf
-
-Flowchart
+## Authors
+Alexis Grandjean
+Laurent Lavigne
