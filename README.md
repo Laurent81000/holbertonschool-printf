@@ -1,4 +1,4 @@
-![Logo Holberton](https://github.com/Laurent81000/holbertonschool-printf/issues/1#issuecomment-1492079122)
+![Logo Holberton](https://user-images.githubusercontent.com/124588032/229158100-bd428e63-72ec-4cad-8048-7c9369907123.jpg)
 
 # C - printf
 
@@ -30,7 +30,6 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o printf
 
 ## Examples
 
-c
 
 #include "holberton.h"
 
@@ -67,7 +66,7 @@ gcc -Wall -Werror -Wextra -pedantic -I../ -I./../tests -L../ -lcunit -o test_pri
 
 ## Flowchart
 
-![Flowchart](https://github.com/Laurent81000/holbertonschool-printf/issues/2#issue-1649556418)
+![Flowchart](https://user-images.githubusercontent.com/124588032/229160104-2d9eca2f-b02c-4ecd-8834-5aec738e464c.png)
 
 ## Authors
 Alexis Grandjean
