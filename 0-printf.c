@@ -23,6 +23,7 @@ int _putchar(char c)
  */
 int _printf(const char *format, ...)
 {
+
 	int count = 0;
 	const char *p;
 	va_list arg;
@@ -65,7 +66,9 @@ int _printf(const char *format, ...)
 			{
 
 				int num = va_arg(arg, int);
-				int div = 1;
+				if (num == INT_MIN)
+
+					int div = 1;
 				if (num < 0)
 				{
 					_putchar('-');
